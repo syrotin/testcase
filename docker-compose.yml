@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+    mysql:
+        build: mysql
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: 123456
+    web:
+        build: nginx
+        volumes:
+           - "/opt/html:/var/www/html"
+        ports:
+           - 80:80
+    php-fpm:
+        build: php-fpm
+        volumes:
+           - "/opt/html:/var/www/html"
+        ports:
+            - 9000:9000
